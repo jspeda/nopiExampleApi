@@ -7,6 +7,8 @@ var router = express.Router();
 // Example:
 // router.use('/post', require('./post'))
 
+router.use('/movies', require('./movies'));
+
 // -----------------------------------------------
 
 module.exports = router;

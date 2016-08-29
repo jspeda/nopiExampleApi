@@ -8,6 +8,9 @@ var methodOverride = require('method-override');
 // var mongoose   = require('mongoose');
 // mongoose.connect(/*Database URL Here*/);
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:8080/nopiExample');
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
