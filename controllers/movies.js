@@ -1,26 +1,41 @@
+// Route Dependencies
 var express = require('express');
-var Video = require('../models/movie');
-module.exports.controller = function(app) {
+var router = express.Router();
 
-  app.get('/movies', function(req, res) {
-    Movie.find(function(err, movies) {
-      if (err)
-          res.send(err);
+// Import Model
 
-      res.json(movies);
-    });
+var movieModel = require('../models/movie');
+
+// Routes ----------------------------
+
+// Example:
+// router.get('/:id', function(req, res) {
+  // Logic Goes Here
+//})
+
+router.get('/movies', function(req, res) {
+  Movie.find(function(err, movies) {
+    if (err)
+        res.send(err);
+
+    res.json(movies);
   });
+});
 
-  app.post('/movies', function(req, res) {
-    var movie = new Movie();
-    movie.name = req.body.name;
-    movie.director = req.body.director;
+router.post('/movies', function(req, res) {
+  var movie = new Movie();
+  movie.name = req.body.name;
+  movie.director = req.body.director;
 
-    movie.save(function(err) {
-      if (err)
-          res.send(err);
+  movie.save(function(err) {
+    if (err)
+        res.send(err);
 
-      res.json({ message: 'Created a new movie!'});
-    });
+    res.json({ message: 'Created a new movie!'});
   });
-}
+});
+
+
+// ------------------------------------
+
+module.exports = router;

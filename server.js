@@ -9,7 +9,7 @@ var methodOverride = require('method-override');
 // mongoose.connect(/*Database URL Here*/);
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:8080/nopiExample');
+mongoose.connect('mongodb://localhost/db');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,6 +21,7 @@ var port = process.env.PORT || 8080;
 
 // API Routes
 var router = express.Router();
+
 router.get('/', function(req, res) {
     res.json({ message: 'Welcome to Nopi-API!' });
 });
