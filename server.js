@@ -9,7 +9,10 @@ var methodOverride = require('method-override');
 // mongoose.connect(/*Database URL Here*/);
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/db');
+mongoose.connect('mongodb://1234:pass@ds019806.mlab.com:19806/nopimovies');
+mongoose.Promise = require('bluebird');
+// var assert = require('assert');
+// assert.equal(query.exec().constructor, require('bluebird'));
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,9 +31,6 @@ router.get('/', function(req, res) {
 
 // Controllers Contain Routes
 app.use(require('./controllers'));
-
-// Router Prefixed Paths
-app.use('/api', router);
 
 // Server Started
 app.listen(port);

@@ -1,10 +1,9 @@
 // Route Dependencies
 var express = require('express');
 var router = express.Router();
+var Movie = require('../models/Movie');
 
 // Import Model
-
-var movieModel = require('../models/movie');
 
 // Routes ----------------------------
 
@@ -13,16 +12,15 @@ var movieModel = require('../models/movie');
   // Logic Goes Here
 //})
 
-router.get('/movies', function(req, res) {
-  Movie.find(function(err, movies) {
-    if (err)
-        res.send(err);
-
-    res.json(movies);
+router.get('', function(req, res) {
+  console.log('This is the GET route for Movies!');
+  console.log(req.body);
+  Movie.find().then(function(movies) {
+      res.json(movies);
   });
 });
 
-router.post('/movies', function(req, res) {
+router.post('', function(req, res) {
   var movie = new Movie();
   movie.name = req.body.name;
   movie.director = req.body.director;
@@ -30,7 +28,6 @@ router.post('/movies', function(req, res) {
   movie.save(function(err) {
     if (err)
         res.send(err);
-
     res.json({ message: 'Created a new movie!'});
   });
 });
